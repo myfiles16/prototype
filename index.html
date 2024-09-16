@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Chatbot interface -->
+    <div id="chatbot" class="chat-container"></div>
+
+    <!-- Flashcard section (initially hidden) -->
+    <div class="flashcard-container" style="display: none;">
+        <div class="flashcard">Flashcard 1: Software Engineer</div>
+        <div class="flashcard">Flashcard 2: Data Scientist</div>
+        <div class="flashcard">Flashcard 3: Project Manager</div>
+    </div>
+
+    <!-- Buttons for flashcard navigation (initially hidden) -->
+    <div class="buttons" style="display: none;">
+        <button id="left-button">Move Left</button>
+        <button id="right-button">Move Right</button>
+    </div>
+
+    <!-- Download Movements button (initially hidden) -->
+    <div class="download-container" style="display: none;">
+        <button id="download-button">Download Movements</button>
+    </div>
+
+    <script src="swipescript.js"></script>
+</body>
+</html>
