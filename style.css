@@ -8,12 +8,14 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Flashcard container styles */
 .flashcard-container {
     position: relative;
-    width: 300px;
+    width: 100%;
+    max-width: 300px; /* Limit width for larger screens */
     height: 400px;
     margin-bottom: 20px; /* Space for buttons below */
 }
@@ -29,12 +31,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 18px; /* Adjust font size for smaller screens */
     transition: transform 1s ease, opacity 1s ease; /* Smooth transition */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     z-index: 1; /* Ensures cards overlap correctly */
 }
 
+/* Flashcard color variations */
 .flashcard:nth-child(1) {
     background-color: #f8b400;
 }
@@ -48,7 +51,6 @@ body {
 /* Button styles */
 button {
     padding: 10px 20px;
-    margin: 0 10px;
     font-size: 16px;
     cursor: pointer;
     border: none;
@@ -101,13 +103,15 @@ button:active {
 
 /* Chat styles */
 .chat-container {
-    width: 400px;
+    width: 90%; /* Adjust width for mobile */
+    max-width: 400px; /* Limit maximum width */
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Chat messages */
 .chat-message {
     margin: 10px 0;
 }
@@ -132,4 +136,58 @@ input[type="text"], button {
 
 input[type="text"] {
     margin-bottom: 10px; /* Add space between input and button */
+}
+
+/* Tutorial styles */
+.tutorial {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.tutorial p {
+    margin: 0 0 10px;
+}
+
+.tutorial button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.tutorial button:hover {
+    background-color: #2980b9;
+}
+
+.tutorial button:active {
+    background-color: #1d6fa5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    /* Adjust font sizes and layout for smaller screens */
+    .flashcard {
+        font-size: 16px; /* Smaller font size for mobile */
+    }
+    button {
+        font-size: 14px; /* Smaller font size for mobile buttons */
+    }
+    .chat-message {
+        font-size: 14px; /* Smaller font size for chat messages */
+    }
 }
