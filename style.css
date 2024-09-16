@@ -1,0 +1,135 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+/* Flashcard container styles */
+.flashcard-container {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin-bottom: 20px; /* Space for buttons below */
+}
+
+/* Flashcard styles */
+.flashcard {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    transition: transform 1s ease, opacity 1s ease; /* Smooth transition */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Ensures cards overlap correctly */
+}
+
+.flashcard:nth-child(1) {
+    background-color: #f8b400;
+}
+.flashcard:nth-child(2) {
+    background-color: #3498db;
+}
+.flashcard:nth-child(3) {
+    background-color: #2ecc71;
+}
+
+/* Button styles */
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button:active {
+    background-color: #1d6fa5;
+}
+
+/* Buttons container styles */
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Space between flashcards and buttons */
+}
+
+/* Download button specific styles */
+.download-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Space from buttons */
+}
+
+.download-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.download-container button:hover {
+    background-color: #2980b9;
+}
+
+.download-container button:active {
+    background-color: #1d6fa5;
+}
+
+/* Chat styles */
+.chat-container {
+    width: 400px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.chat-message {
+    margin: 10px 0;
+}
+
+.chat-message.bot {
+    color: #3498db;
+}
+
+.chat-message.user {
+    text-align: right;
+    color: #2ecc71;
+}
+
+input[type="text"], button {
+    margin-top: 10px;
+    padding: 10px;
+    width: calc(100% - 22px);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="text"] {
+    margin-bottom: 10px; /* Add space between input and button */
+}
