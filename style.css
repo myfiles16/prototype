@@ -16,8 +16,9 @@ body {
     position: relative;
     width: 100%;
     max-width: 300px; /* Limit width for larger screens */
-    height: 400px;
+    height: 400px; /* Set a consistent height */
     margin-bottom: 20px; /* Space for buttons below */
+    overflow: hidden; /* Ensure no content overflows */
 }
 
 /* Flashcard styles */
