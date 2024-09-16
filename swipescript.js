@@ -22,9 +22,8 @@ downloadButton.addEventListener('click', () => {
 
 function checkAllFlashcardsSwiped() {
     if (currentCardIndex < 0) {
-        // Show the download button and hide swipe buttons when all flashcards have been swiped
+        // Show the download button when all flashcards have been swiped
         document.querySelector('.download-container').style.display = 'flex';
-        document.querySelector('.buttons').style.display = 'none';
     }
 }
 
@@ -51,8 +50,15 @@ function swipeCard(direction) {
     checkAllFlashcardsSwiped();
 }
 
-document.getElementById('left-button').addEventListener('click', () => swipeCard('left'));
-document.getElementById('right-button').addEventListener('click', () => swipeCard('right'));
+// Handle click on the left or right side of the flashcard
+flashcards.forEach(card => {
+    card.addEventListener('click', (event) => {
+        const cardWidth = card.offsetWidth;
+        const clickPosition = event.offsetX;
+        const direction = clickPosition < cardWidth / 2 ? 'left' : 'right';
+        swipeCard(direction);
+    });
+});
 
 // Improved touch event handling for swipe gestures
 let touchstartX = 0;
@@ -61,7 +67,7 @@ let touchendX = 0;
 function handleSwipe() {
     const swipeThreshold = 50; // Minimum swipe distance in pixels
     const distance = touchendX - touchstartX;
-    
+
     if (Math.abs(distance) > swipeThreshold) {
         const direction = distance < 0 ? 'left' : 'right';
         swipeCard(direction);
@@ -90,6 +96,22 @@ function chatbotMessage(message, isBot = true) {
     chatbot.scrollTop = chatbot.scrollHeight; // Auto scroll to the bottom
 }
 
+// Tutorial overlay logic
+function showTutorial() {
+    const tutorial = document.createElement('div');
+    tutorial.classList.add('tutorial');
+    tutorial.innerHTML = `
+        <p>Click the left or right side of the card to swipe.<br/>
+        Or swipe left/right on mobile to navigate.</p>
+        <button id="close-tutorial">Got it!</button>
+    `;
+    document.body.appendChild(tutorial);
+
+    document.getElementById('close-tutorial').addEventListener('click', () => {
+        document.body.removeChild(tutorial);
+    });
+}
+
 // Utility to add input fields and buttons dynamically
 function addInputField(placeholder, callback) {
     const input = document.createElement('input');
@@ -107,17 +129,6 @@ function addInputField(placeholder, callback) {
                 callback(userInput);
             }
         }
-    });
-}
-
-function addButton(label, callback) {
-    const button = document.createElement('button');
-    button.innerText = label;
-    chatbot.appendChild(button);
-
-    button.addEventListener('click', () => {
-        callback();
-        chatbot.removeChild(button);
     });
 }
 
@@ -149,6 +160,17 @@ function startChat() {
     }, 1000);
 }
 
+function addButton(label, callback) {
+    const button = document.createElement('button');
+    button.innerText = label;
+    chatbot.appendChild(button);
+
+    button.addEventListener('click', () => {
+        callback();
+        chatbot.removeChild(button);
+    });
+}
+
 // Start flashcards section
 function startFlashcards() {
     chatbotMessage('Great! Let\'s begin.');
@@ -156,8 +178,10 @@ function startFlashcards() {
     // Hide chatbot and show flashcards
     chatbot.style.display = 'none';
     document.querySelector('.flashcard-container').style.display = 'block';
-    document.querySelector('.buttons').style.display = 'flex'; // Show swipe buttons
     document.querySelector('.download-container').style.display = 'none'; // Hide download button
+
+    // Show tutorial after flashcards are displayed
+    showTutorial();
 }
 
 // Start the chatbot conversation when the page loads
